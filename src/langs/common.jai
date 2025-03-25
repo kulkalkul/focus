@@ -257,6 +257,7 @@ get_lang_from_name :: (lang_name: string) -> Buffer.Lang, found: bool {
         case "d";            return .D,          true;
         case "glsl";         return .Glsl,       true;
         case "hlsl";         return .Hlsl,       true;
+        case "slang";        return .Slang,      true;
         case "go";           return .Golang,     true;
         case "golang";       return .Golang,     true;
         case "java";         return .Java,       true;

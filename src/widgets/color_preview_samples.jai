@@ -487,6 +487,72 @@ technique10 SimpleTechnique
 
 HLSL
 
+SAMPLE_Slang :: #string SLANG
+// Comment
+/* Multiline Comment */
+cbuffer MatrixBuffer : register(b0)
+{
+    matrix worldMatrix;
+    matrix viewMatrix;
+    matrix projectionMatrix;
+}
+
+Texture2D shaderTexture : register(t0);
+SamplerState sampleType : register(s0);
+
+struct VertexInputType
+{
+    float4 position : POSITION;
+    float2 tex : TEXCOORD0;
+    float3 normal : NORMAL;
+};
+
+struct PixelInputType
+{
+    float4 position : SV_POSITION;
+    float2 tex : TEXCOORD0;
+    float3 normal : NORMAL;
+};
+
+PixelInputType VertexShader(VertexInputType input)
+{
+    PixelInputType output;
+
+    // Calculate the position of the vertex.
+    output.position = mul(input.position, worldMatrix);
+    output.position = mul(output.position, viewMatrix);
+    output.position = mul(output.position, projectionMatrix);
+
+    // Pass through the texture coordinates.
+    output.tex = input.tex;
+
+    // Pass through the normal vector.
+    output.normal = mul(input.normal, (float3x3)worldMatrix);
+
+    return output;
+}
+
+float4 PixelShader(PixelInputType input) : SV_TARGET
+{
+    float3 lightDir = normalize(float3(0.0f, 1.0f, -1.0f));
+    float lightIntensity = saturate(dot(input.normal, lightDir));
+
+    float4 textureColor = shaderTexture.Sample(sampleType, input.tex);
+
+    return float4(textureColor.rgb * lightIntensity, textureColor.a);
+}
+
+technique10 SimpleTechnique
+{
+    pass Pass1
+    {
+        SetVertexShader(CompileShader(vs_4_0, VertexShader()));
+        SetPixelShader(CompileShader(ps_4_0, PixelShader()));
+    }
+}
+
+SLANG
+
 
 SAMPLE_Golang :: #string GOLANG
 // Comment

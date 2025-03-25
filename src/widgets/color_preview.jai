@@ -304,6 +304,7 @@ get_language_sample_text :: (lang: Buffer.Lang) -> string {
         case .D;                 return SAMPLE_D;
         case .Glsl;              return SAMPLE_Glsl;
         case .Hlsl;              return SAMPLE_Hlsl;
+        case .Slang;             return SAMPLE_Slang;
         case .Golang;            return SAMPLE_Golang;
         case .Java;              return SAMPLE_Java;
         case .Js;                return SAMPLE_Js;

@@ -555,6 +555,7 @@ tokenize_for_indentation :: (buffer: *Buffer) -> [] Indentation_Token /* temp */
         case .Json;         return tokenize_c_like_lang_for_indentation(buffer, get_next_json_token);
         case .Glsl;         return tokenize_c_like_lang_for_indentation(buffer, get_next_glsl_token);
         case .Hlsl;         return tokenize_c_like_lang_for_indentation(buffer, get_next_hlsl_token);
+        case .Slang;        return tokenize_c_like_lang_for_indentation(buffer, get_next_slang_token);
         case .Swift;        return tokenize_swift_for_indentation(buffer);
         case .Zig;          return tokenize_c_like_lang_for_indentation(buffer, get_next_zig_token);
         case .Html;         return tokenize_xml_for_indentation(buffer);
@@ -1608,6 +1609,7 @@ get_tokenize_function :: (lang: Buffer.Lang) -> Tokenize_Function {
         case .D;                    return tokenize_d;
         case .Glsl;                 return tokenize_glsl;
         case .Hlsl;                 return tokenize_hlsl;
+        case .Slang;                return tokenize_slang;
         case .Golang;               return tokenize_golang;
         case .Java;                 return tokenize_java;
         case .Js;                   return tokenize_js;
@@ -1849,6 +1851,7 @@ Buffer :: struct {
         D;
         Glsl;
         Hlsl;
+        Slang;
         Golang;
         Java;
         Js;

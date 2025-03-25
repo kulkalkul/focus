@@ -1312,6 +1312,8 @@ get_lang_from_path :: (full_path: string) -> Buffer.Lang {
         case "fx";              lang = .Hlsl;
         case "fxh";             lang = .Hlsl;
 
+        case "slang";           lang = .Slang;
+
         case "c";               lang = .C;
         case "h";               lang = .C;
         case "inl";             lang = .Cpp;
@@ -3443,6 +3445,7 @@ toggle_comment :: (editor: *Editor, buffer: *Buffer, is_fallback := false) {
         case .D;      #through;
         case .Glsl;   #through;
         case .Hlsl;   #through;
+        case .Slang;  #through;
         case .Golang; #through;
         case .Java;   #through;
         case .Js;     #through;
@@ -3667,6 +3670,7 @@ toggle_block_comment :: (editor: *Editor, buffer: *Buffer, is_fallback := false)
         case .D;      #through;
         case .Glsl;   #through;
         case .Hlsl;   #through;
+        case .Slang;  #through;
         case .Golang; #through;
         case .Java;   #through;
         case .Js;     #through;

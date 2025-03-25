@@ -991,6 +991,7 @@ focus_allocator: Allocator;
 #load "langs/focus_config.jai";
 #load "langs/glsl.jai";
 #load "langs/hlsl.jai";
+#load "langs/slang.jai";
 #load "langs/golang.jai";
 #load "langs/java.jai";
 #load "langs/js.jai";
