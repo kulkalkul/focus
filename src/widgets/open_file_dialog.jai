@@ -344,8 +344,8 @@ refresh_entries :: (clear_input := true) {
         entry.name_highlights = name_highlights;
         entry.path_highlights = path_highlights;
         // NOTE: there's space left in the sort key in case we need to add more parameters
-        score_part:      u64 = (cast,trunc(u64) score)                              << 22;
-        dir_id_part:     u64 = (cast,trunc(u64) (63 - buffer.file.project_dir_id))  << 16;
+        dir_id_part:     u64 = (cast,trunc(u64) (63 - buffer.file.project_dir_id))  << 40;
+        score_part:      u64 = (cast,trunc(u64) score)                              << 16;
         length_part:     u64 = (cast,trunc(u64) (400 - buffer_name.count))          <<  8;
         times_open_part: u64 = (cast,trunc(u64) buffer.num_times_opened)            <<  0;
         if !filter.full_string then length_part = 0;  // don't sort by length when no filtering is applied
